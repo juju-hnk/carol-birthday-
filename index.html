@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>bday</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+
+      body {
+        font-family: "Comfortaa", cursive, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #ffe6f0;
+        color: #663366;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #landing {
+        position: relative;
+        height: 100vh;
+        background: linear-gradient(#fff0f5, #ffe6f0);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .sword {
+        width: 100px;
+        animation: float 2s ease-in-out infinite;
+        z-index: 2;
+      }
+
+      @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0); }
+      }
+
+      .character-left,
+      .character-right {
+        position: absolute;
+        bottom: 10%;
+        width: 120px;
+        transition: transform 1s ease-out;
+      }
+
+      .character-left {
+        left: -150px;
+        animation: slideLeft 1.5s forwards;
+      }
+
+      .character-right {
+        right: -150px;
+        animation: slideRight 1.5s forwards;
+      }
+
+      @keyframes slideLeft {
+        to { left: 25%; }
+      }
+
+      @keyframes slideRight {
+        to { right: 25%; }
+      }
+
+      #startButton {
+        margin-top: 2rem;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 25px;
+        background-color: #ffb6c1;
+        color: #663366;
+        cursor: pointer;
+        transition: background 0.3s;
+        z-index: 2;
+      }
+
+      #startButton:hover {
+        background-color: #ff9ec9;
+      }
+
+      header {
+        background: #ffccdd;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-around;
+        background: #ffb6c1;
+        padding: 0.5rem 0;
+      }
+
+      nav button {
+        background: #fff0f5;
+        border: none;
+        border-radius: 15px;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      nav button:hover {
+        background: #ff9ec9;
+      }
+
+      main {
+        flex: 1;
+        padding: 1rem;
+      }
+
+      section {
+        display: none;
+        margin-top: 1rem;
+      }
+
+      section.active {
+        display: block;
+      }
+
+      .kawaii-img {
+        width: 120px;
+        margin: 1rem auto;
+        display: block;
+      }
+
+      .blague {
+        font-style: italic;
+      }
+
+      .quiz-question {
+        margin-bottom: 1rem;
+      }
+
+      .quiz-question button {
+        margin: 0.2rem;
+        padding: 0.5rem 1rem;
+        border-radius: 12px;
+        border: 1px solid #663366;
+        background: #ffe6f0;
+        cursor: pointer;
+      }
+
+      .quiz-question button:hover {
+        background: #ff9ec9;
+      }
+
+      iframe {
+        width: 100%;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="landing">
+      <img src="https://raw.githubusercontent.com/juju-hnk/carol-birthday-/refs/heads/main/chiikawagauche.jpg" alt="Chiikawa gauche" class="character-left" />
+      <img src="https://raw.githubusercontent.com/juju-hnk/carol-birthday-/refs/heads/main/SweetBabyHachiware2-removebg-preview.jpg" alt="Chiikawa droite" class="character-right" />
+      <img src="https://raw.githubusercontent.com/juju-hnk/carol-birthday-/refs/heads/main/vecteezy_ai-generated-pixelation-of-sword-or-blade-png_41638535.jpg" alt="Épée" class="sword" />
+      <button id="startButton">Start</button>
+    </div>
+
+    <div id="mainContent" style="display: none; flex-direction: column; min-height: 100vh">
+      <header>bday</header>
+      <nav>
+        <button data-section="surprise">regalo</button>
+        <button data-section="quiz">QUIZZ</button>
+        <button data-section="photo">LIL PIC</button>
+        <button data-section="audio">Playlist</button>
+        <button data-section="blague">cute</button>
+      </nav>
+
+      <main>
+        <section id="surprise" class="active">
+          <h2>regalo del dia</h2>
+          <p>CHIIKAWA</p>
+          <img src="https://gl.chiikawa-pocket.com/en/_astro/logo_en.DMIDQHlb.webp" alt="Lapin kawaii" class="kawaii-img" />
+        </section>
+
+        <section id="quiz">
+          <h2>Better be right</h2>
+          <div class="quiz-question">
+            <p>que es nuestro animal</p>
+            <button onclick="checkAnswer(this, false)">perro</button>
+            <button onclick="checkAnswer(this, true)">coackroach</button>
+            <button onclick="checkAnswer(this, false)">paloma</button>
+          </div>
+          <div class="quiz-question">
+            <p>yo prefiero :</p>
+            <button onclick="checkAnswer(this, true)">Chiikawa</button>
+            <button onclick="checkAnswer(this, false)">Rilakkuma</button>
+            <button onclick="checkAnswer(this, false)">Totoro</button>
+          </div>
+        </section>
+
+        <section id="photo">
+          <h2>pic</h2>
+          <img src="https://gl.chiikawa-pocket.com/en/_astro/kv_pc.itHBYKJu.png" alt="Chiikawa mignon" class="kawaii-img" />
+          <p>Un Chiikawa tan mona 💖</p>
+        </section>
+
+        <section id="audio">
+          <h2>you already know it</h2>
+          <p>💖</p>
+          <iframe src="https://open.spotify.com/embed/playlist/52rOs8aV0GZyYytz5kyFIh?utm_source=generator" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </section>
+
+        <section id="blague">
+          <h2>lil notes</h2>
+          <p class="blague">
+            I ENJOY TALKING TO YOU<br /><br />happy birthday brujita
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      document.getElementById("startButton").addEventListener("click", function () {
+        document.getElementById("landing").style.display = "none";
+        document.getElementById("mainContent").style.display = "flex";
+      });
+
+      const buttons = document.querySelectorAll("nav button");
+      const sections = document.querySelectorAll("main section");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-section");
+          sections.forEach((s) => {
+            s.classList.toggle("active", s.id === target);
+          });
+        });
+      });
+
+      function checkAnswer(button, correct) {
+        if (correct) {
+          alert("UR RIGHT 🎉");
+        } else {
+          alert("NUH UH");
+        }
+      }
+    </script>
+  </body>
+</html>
